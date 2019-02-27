@@ -1,48 +1,139 @@
 // Create Array of Possible Words
-var wordArr = ["Flute", "Oboe", "Clarinet", "Bassoon", "Saxophone", "Trumpet", "Trombone", "Tuba", "Timpani", "Snare", "Cymbal", "Bass Drum", "Wood Block", "Triangle", "Tambourine", "Glockenspiel", "Xylophone", "Vibraphone", "Marimba", "Piano", "Celesta", "Organ", "Accordion", "Harp", "Violin", "Viola", "Cello", "Bass", "Guitar",
+var wordArr = [
+    "Flute",
+    "Oboe",
+    "Clarinet",
+    "Bassoon",
+    "Saxophone",
+    "Trumpet",
+    "Trombone",
+    "Tuba",
+    "Timpani",
+    "Snare",
+    "Cymbal",
+    "Drum",
+    "Triangle",
+    "Tambourine",
+    "Glockenspiel",
+    "Xylophone",
+    "Vibraphone",
+    "Marimba",
+    "Piano",
+    "Celesta",
+    "Organ",
+    "Accordion",
+    "Harp",
+    "Violin",
+    "Viola",
+    "Cello",
+    "Bass",
+    "Guitar",
 ];
 
-// Create a variable that picks a random word from the array
-var word = wordArr[Math.floor(Math.random() * wordArr.length)];
+// Empty Variable to Store Randomly Chosen Word
+var word = "";
+var remWord = [];
+var answerArr = 0;
+var blaCor = [];
+var letGuess = [];
 
-// Loop Variable: Starts at 0 and finishes when length of word is met. Iterate increases by one for each loop. 
-var answerArr = [];
-for (var i = 0; i < word.length; i++) {
-    answerArr[i] = "_";
+// Counter Variables
+var wins = 0;
+var losses = 0;
+var remGuess = 11;
+
+// Function to Start Game
+
+function Game() {
+
+    //chooses random word from wordArr
+    var word = wordArr[Math.floor(Math.random() * wordArr.length)];
+
+    // Split the word pulled from list. Place letters in Array. Store in a separate variable. 
+    remWord = word.split("");
+
+    // Var to store length of word and represent in underscrolls. 
+    answerArr = remWord.length;
+
+
+    // Loop Variable: Starts at 0 and finishes when length of word is met. Iterate increases by one for each loop. 
+    for (var i = 0; i < word.length; i++) {
+        blaCor.push("_");
+    }
+
+    // Prints the "_" onto HTML 
+    document.getElementById("cur-word").innerHTML = " " + blaCor.join(" ");
+
 }
 
-// Create Variable that is equal to the length of the hidden word. This will tell the loop how many "_" characters to fill. 
-var remLetters = word.length;
+// reset Function: Resets the game when conditions met.
+function reset() {
+    remGuess = 11;
+    letGuess = [];
+    blaCor = [];
+    Game()
+}
 
-//GAME LOOP
-
-// While loop that ends when the remaining letters are no longer greater than 0. Parent structure of code block. 
-while (remLetters > 0) {
-    // Displays the hidden word - need to switch from alert to printed on screen
-    alert(answerArr.join(" "));
-
-    // Creates a var that stores the guess input from player
-    var guess = prompt("Guess a Letter");
-
-    if (guess.length !== 1) {
-        alert("Stop it with the not letters! Only letters - please.");
-
-    } else {
-
-        //update game state with guess. 
-        // Create for-loop that steps through each letter of "word" var. 
-        for (var j = 0; j < word.length; j++) {
-            //Checks current letter against "guess" var.
-            //If matching, use answerArr[j] = guess to update
-            if (word[j] === guess) {
-                answerArr[j] = guess;
-                remLetters--;
+// checkLet Function: Test user input against word variable. Tested by If / Else statements
+function checkLet(letter) {
+    var correctLet = false;
+    // var is true when user input equals a letter entered. 
+    for (var i = 0; i < answerArr; i++) {
+        if (word[i] == letter) {
+            correctLet = true;
+        }
+    }
+    // if the correctLet value = false
+    if (correctLet) {
+        // For loop to test each letter
+        for (var i = 0; i < answerArr; i++) {
+            if (word[i] == letter) {
+                blaCor[i] = letter;
             }
         }
     }
+    else {
+        letGuess.push(letter);
+        remGuess--;
+    }
+
 }
 
-    // Reveal Answer - Win Alert
-    alert(answerArr.join(" "));
-    alert("You Win! The word was " + word);
+//gameOver Function: displays win / loss number. Resets the game. 
+function gameOver() {
 
+    // Win
+    if (remWord.toString() === blaCor.toString()) {
+        wins++;
+        reset()
+
+        // add a function to diplay win graphic
+
+        document.getElementById("win-track").innerHTML = " " + wins;
+
+        // Lose
+    } else if (remGuess === 0) {
+        losses++;
+        reset()
+        document.getElementById("loss-track").innerHTML = " " + losses;
+    }
+    // display remGuess
+    document.getElementById("cur-word").innerHTML = " " + blaCor.join(" ");
+    document.getElementById("rem-guess").innerHTML = " " + remGuess;
+}
+
+// Game Start and Onkeyup functions
+
+Game()
+
+// Listen for onKeyUp. Add .toLowerCase in order to ignore caps. Add letter guessed to new variable. 
+document.onkeyup = function (event) {
+    var guesses = String.fromCharCode(event.keyCode).toLowerCase();
+    // check letter 
+    checkLet(guesses)
+    // win/lose
+    gameOver();
+
+    //display and store incorrectly guessed letters. 
+    document.getElementById("let-guess").innerHTML = " " + letGuess.join(" ");
+}
