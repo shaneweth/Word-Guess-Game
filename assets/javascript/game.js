@@ -64,6 +64,8 @@ function Game() {
     // Prints the "_" onto HTML 
     document.getElementById("cur-word").innerHTML = " " + blaCor.join(" ");
 
+    
+
 }
 
 // reset Function: Resets the game when conditions met.
