@@ -32,120 +32,41 @@ var words = [
 
 // Empty Variable to Store Randomly Chosen Word
 
-var word = "";
-var lettersOfWord = [];
-var blanks = 0;
-var blanksAndCorrect = [];
-var wrongGuess = [];
 
-// Counter Variables
-var wins = 0;
-var losses = 0;
-var guessesRemaining = 9;
+var word = words[Math.floor(Math.random() * words.length)];
 
-// GAME Functions
-
-function game() {
-    
-    let word = words[Math.floor(Math.random() * words.length)];
-
-    // Set an array for the letters
-
-    lettersOfWord = word.split("");
-
-    // store length of the word in blanks 
-    blanks = lettersOfWord.length;
-
-    // Loop to iterate "word" var and push blanks into array
-    for (var i = 0; i < blanks; i++) {
-        blanksAndCorrect.push("_");
-    }
-
-    // Displaying the "_" in HTML
-    document.getElementById("currentword").innerHTML = " " + blanksAndCorrect.join(" ");
-
-    // testing through the console.log
-    console.log(word);
-    console.log(lettersOfWord);
-    console.log(blanks);
-    console.log(blanksAndCorrect);
+// Answer Array
+var answerArray = [];
+for (var i = 0; i < word.length; i++) {
+    answerArray[i] = "_"
 }
 
+// create variable for tracking letters that remain to be guessed
+var remainingLetters = word.length;
 
-// RESET Function
+// ***GAME LOOP***
 
-function reset() {
-    guessesRemaining = 9;
-    wrongGuess = [];
-    blanksAndCorrect = [];
-    game()
-}
+while (remainingLetters > 0) {
+    // Player Progress
+    var el = document.getElementById("currentword");
+    el.innerHTML = answerArray.join(" ");
 
-// LETTER CHECK
+    // guess from player
 
-function checkLetters(letter) {
-
-    var letterInWord = false;
-
-    // If the guessed letter is = to a letter in the word array
-
-    for (var i = 0; i < blanks; i++) {
-        if (word[i] === letter) {
-            letterInWord = true;
-        }
-    }
-    // If the guessed letter is != to a letter in the word array
-    if (letterInWord) {
-
-        for (var i = 0; i < blanks; i++) {
-            if (word[i] === letter) {
-                blanksAndCorrect[i] = letter;
+    var guess = prompt("guess a letter");
+    if (guess === null) {
+        // Exit Game Loop
+        break;
+    } else if (guess.length !== 1) {
+        alert("Please Enter a Single Letter")
+    } else {
+        // Update Guess
+        for (var j = 0; j < word.length; j++) {
+            if (word[j] === guess) {
+                answerArray[j] = guess;
+                remainingLetters--;
             }
         }
-
-
-        // else use .push() to add the incorrect guess in the incorrect guesses section. Decrement remaining guesses by one.
-    } else {
-        wrongGuess.push(letter);
-        guessesRemaining--;
     }
-    console.log(blanksAndCorrect);
-}
-
-//  GAME COMPLETE
-
-function complete() {
-    console.log("wins: " + wins + "| losses: " + losses + "| guesses remaining: " + guessesRemaining)
-
-    // WINNING
-    if (lettersOfWord.toString() === blanksAndCorrect.toString()) {
-        wins++;
-        reset()
-
-        document.getElementById("wintracker").innerHTML = " " + wins;
-
-    } else if (guessesRemaining === 0) {
-        losses++;
-        reset();
-        document.getElementById("losstracker").innerHTML = " " + guessesRemaining;
-    }
-}
-
-//  EXECUTE GAME 
-
-game()
-
-
-document.onkeyup = function (event) {
-    var guesses = String.fromCharCode(event.keyCode).toLowerCase();
-
-    checkLetters(guesses);
-
-    complete();
-
-    console.log(guesses);
-
-
-    document.getElementById("playerguesses").innerHTML = " " + wrongGuess.join(" ");
 }
 
