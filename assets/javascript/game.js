@@ -1,33 +1,33 @@
 // Create Array of Possible Words
 var words = [
-    "Flute",
-    "Oboe",
-    "Clarinet",
-    "Bassoon",
-    "Saxophone",
-    "Trumpet",
-    "Trombone",
-    "Tuba",
-    "Timpani",
-    "Snare",
-    "Cymbal",
-    "Drum",
-    "Triangle",
-    "Tambourine",
-    "Glockenspiel",
-    "Xylophone",
-    "Vibraphone",
-    "Marimba",
-    "Piano",
-    "Celesta",
-    "Organ",
-    "Accordion",
-    "Harp",
-    "Violin",
-    "Viola",
-    "Cello",
-    "Bass",
-    "Guitar",
+    "flute",
+    "oboe",
+    "clarinet",
+    "bassoon",
+    "saxophone",
+    "trumpet",
+    "trombone",
+    "tuba",
+    "timpani",
+    "snare",
+    "cymbal",
+    "drum",
+    "triangle",
+    "tambourine",
+    "glockenspiel",
+    "xylophone",
+    "vibraphone",
+    "marimba",
+    "piano",
+    "celesta",
+    "organ",
+    "accordion",
+    "harp",
+    "violin",
+    "viola",
+    "cello",
+    "bass",
+    "guitar",
 ];
 
 var randomWord = "";
@@ -42,10 +42,9 @@ var wins = 0;
 
 // Empty Variable to Store Randomly Chosen Word
 
-var word = words[Math.floor(Math.random() * words.length)];
 
 function gameStart() {
-    randomWord = word[Math.floor(Math.random() * word.length)];
+    randomWord = words[Math.floor(Math.random() * words.length)];
     letters = randomWord.split("");
     num = letters.length;
 
@@ -80,7 +79,7 @@ function checkAnswer(letter) {
     }
 
     if (letterInWord) {
-        for(var j = 0; j < num; j++) {
+        for (var j = 0; j < num; j++) {
             if (randomWord[j] === letter) {
                 output[j] = letter;
                 console.log(output)
@@ -96,26 +95,25 @@ gameStart();
 
 function rounds() {
     document.getElementById("guesses-left").innerHTML = guessesLeft;
-    document.getElementById("letters-guessed").innerHTML = wrongLetters;
+    document.getElementById("letters-guessed").innerHTML = wrongLetters.join(" ");
     document.getElementById("currentword").innerHTML = output.join(" ");
 
-    if(letters.toString() === output.toString()) {
+    if (letters.toString() === output.toString()) {
         wins++
         document.getElementById("wintracker").innerHTML = wins;
-        play();
+        gameStart()
     } else if (guessesLeft === 0) {
         losses++
-        document.getElementById("losses").innerHTML = losses;
+        document.getElementById("losstracker").innerHTML = losses;
         gameStart();
     }
 };
 
 // key listener
 
-document.onkeypress = function(event) {
+document.onkeypress = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
     console.log(userGuess);
     checkAnswer(userGuess);
     rounds();
 };
-
