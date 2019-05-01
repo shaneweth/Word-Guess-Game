@@ -1,7 +1,7 @@
 // Create Array of Possible Words
-var words = [
+var words = 
+[
     "flute",
-    "oboe",
     "clarinet",
     "bassoon",
     "saxophone",
@@ -12,11 +12,7 @@ var words = [
     "snare",
     "cymbal",
     "drum",
-    "triangle",
-    "tambourine",
     "glockenspiel",
-    "xylophone",
-    "vibraphone",
     "marimba",
     "piano",
     "celesta",
@@ -24,7 +20,6 @@ var words = [
     "accordion",
     "harp",
     "violin",
-    "viola",
     "cello",
     "bass",
     "guitar",

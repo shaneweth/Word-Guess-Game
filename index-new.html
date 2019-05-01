@@ -5,113 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>hangman</title>
+    <title>Word Guess Grid</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
-    <header>
+    <div class="grid-container">
 
-        <div>
-            <h1>hangman</h1>
+        <div class="item1">
+            <h1>Word Guess - The Orchestra</h1>
         </div>
-    </header>
 
-    <footer>
+        <div class="item2">
+            <div>
+                <h3>Remaining Guesses:
+                    <span id="guesses-left"></span>
+                </h3>
+            </div>
+            <div>
+                <h3>Wins:
+                    <span id="wintracker"></span>
+                </h3>
+            </div>
 
+            <div>
+                <h3>Losses:
+                    <span id="losstracker"></span>
+                </h3>
+            </div>
 
-    </footer>
+            <div>
+                <h3>Letters Guessed:
+                    <span id="letters-guessed"></span>
+                </h3>
+            </div>
+        </div>
 
-    </main>
+        <div class="item3">
+            <h3 id="currentword"></h3>
+        </div>
 
-
-    <script>
-
-
-        // Array of Words
-        const words = [
-            "Flute",
-            "Oboe",
-            "Clarinet",
-            "Bassoon",
-            "Saxophone",
-            "Trumpet",
-            "Trombone",
-            "Tuba",
-            "Timpani",
-            "Snare",
-            "Cymbal",
-            "Drum",
-            "Triangle",
-            "Tambourine",
-            "Glockenspiel",
-            "Xylophone",
-            "Vibraphone",
-            "Marimba",
-            "Piano",
-            "Celesta",
-            "Organ",
-            "Accordion",
-            "Harp",
-            "Violin",
-            "Viola",
-            "Cello",
-            "Bass",
-            "Guitar",
-        ];
+        <div class="item4">
+            <div><h4>!!guess word here!!</h4></div>
+            <div><h4>this will be the presentation when guessed</h4></div>
+        </div>
+    </div>
 
 
-        // pick a random word
-        let word = words[Math.floor(Math.random() * words.length)];
-
-        // set up the answerArr to show how many letters are being used
-
-        var answerArr = [];
-        for (var i = 0; i < word.length; i++) {
-            answerArr[i] = "_";
-        }
-
-        // create a variable to hold the number of remainingLetters to be guessed
-        var remainingLetters = word.length;
-
-        // MAIN GAME LOGIC
-
-        // While there are letters remaining
-        while (remainingLetters > 0) {
-            // show progress - how many letters guessed
-            alert(answerArr.join(" "));
-
-            // prompt player for guess
-            var guess = prompt("Guess a letter");
-
-            // if guess blank, 
-            if (guess === null) {
-                //exit the game loop
-                break;
-                // if the guess is more than one letter, or no letters, 
-
-            } else if (guess.length !== 1) {
-                // alert to have user guess a single letter only;
-                alert("Please enter a single letter");
-                // if valid
-            } else {
-                for (var j = 0; j < word.length; j++) {
-                    // if the letter guessed is in word
-                    if (word[j] === guess) {
-                        // update the answer array
-                        answerArr[j] = guess;
-                        // subtract one from remaining letters
-                        remainingLetters--;
-                    }
-                }
-            }
-            // END OF GAME LOGIC
-        }
-
-        // Show Word 
-        alert(answerArr.join(" "));
-        alert("Good. The answer was " + word);
-
-    </script>
+    <script src="./assets/javascript/game.js"></script>
 </body>
 
 </html>
