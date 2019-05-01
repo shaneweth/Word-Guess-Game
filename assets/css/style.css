@@ -11,13 +11,14 @@ body {
 .item2  { grid-area: sidebar; }
 .item3  { grid-area: main; }
 .item4  { grid-area: presenter; }
+.right  { grid-area: right; }
 
 .grid-container {
 
     display: grid;
     grid-template-areas: 
                         ". header header ."
-                        "sidebar main main ."
+                        "sidebar main main right"
                         "presenter presenter presenter presenter";
     grid-gap: .5em;
     background-color: rgb(63, 97, 129)
@@ -32,4 +33,12 @@ body {
 
 .item4 {
     height: 25rem;
+}
+
+#gifPlayer {
+    width: 40vw;
+    height: 30vh;
+    margin: 8vh auto auto;
+    background-color: red;
+    border-color: outset 1px rgb(121, 0, 0);
 }
