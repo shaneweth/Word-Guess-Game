@@ -85,7 +85,6 @@ function checkAnswer(letter) {
     }
 };
 
-document.getElementById("begin").addEventListener("click", gameStart);
 
 gameStart();
 
@@ -107,6 +106,9 @@ function rounds() {
 };
 
 // key listener
+
+document.getElementById("begin").addEventListener("click", gameStart);
+
 
 document.onkeypress = function (event) {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();

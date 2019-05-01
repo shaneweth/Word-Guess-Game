@@ -19,7 +19,7 @@ body {
     grid-template-areas: 
                         ". header header ."
                         "sidebar main main right"
-                        "presenter presenter presenter presenter";
+                        "sidebar presenter presenter presenter";
     grid-gap: .5em;
     background-color: rgb(63, 97, 129)
 }
@@ -31,6 +31,10 @@ body {
 
 }
 
+.item2 {
+    text-align: left;
+}
+
 .item4 {
     height: 25rem;
 }
@@ -40,5 +44,5 @@ body {
     height: 30vh;
     margin: 8vh auto auto;
     background-color: red;
-    border-color: outset 1px rgb(121, 0, 0);
+    border: 5px solid rgb(121, 0, 0);
 }
