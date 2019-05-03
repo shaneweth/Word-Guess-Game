@@ -4,10 +4,13 @@
 }
 
 body {
-    height: 100%;
-    background-image: url("../images/notenblatt-1419629_1280.png");
-    background-repeat: no-repeat;
+    background-image: linear-gradient(to bottom right, blue, white);
     background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Julee', cursive;
+
+
 }
 
 header      { grid-area: header; }
@@ -22,7 +25,7 @@ right       { grid-area: right; }
                         ". header ."
                         "sidebar main ."
                         ". main .";
-    grid-gap: .3em;
+    grid-gap: .2em;
 }
 
 .grid-container > div {
@@ -32,6 +35,8 @@ right       { grid-area: right; }
 }
 
 header {
+    background-image: url("../images/notenblatt-1419629_1280.png");
+    background-repeat: no-repeat;
     width: 80%;
     text-align: center;
     padding: 5vh;
@@ -42,10 +47,22 @@ header {
 sidebar {
     background-image: url("../images/parchment.gif");
     background-size: cover;
-    margin-left: 1em;
+    margin-left: 3vw;
     padding: 2vw;
     width: 60%;
     height: 100%;
+}
+
+button {
+    border-radius: 20%;
+    margin: 5rem auto .2rem 7vw;
+    height: 6vh;
+    width: 6vw;
+    box-shadow: 0 0 .3em rgba(75, 14, 14, 0.6)
+}
+svg {
+    height: 5vh;
+    width: 5vw;
 }
 
 sidebar h3{
@@ -53,11 +70,8 @@ sidebar h3{
     padding: 1rem;
     opacity: .7;
     font-size: 1.5em;
+    text-shadow: 0 0 .3em rgba(75, 14, 14, 0.6)
 
-}
-
-.right {
-    grid-template-areas: right;
 }
 
 main {
@@ -70,9 +84,9 @@ main {
 }
 
 .disWord {
-    background-color: rgba(75, 14, 14, 0.733);
+    background-color: rgba(12, 3, 3, 0.411);
     border: .2em dotted rgb(241, 217, 172);
-    margin: auto auto;
+    margin: 2vh auto auto;
     text-align: center;
     padding: 3vw;
     width: 60%;
