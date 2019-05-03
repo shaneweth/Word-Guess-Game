@@ -5,44 +5,93 @@
 
 body {
     height: 100%;
+    background-image: url("../images/notenblatt-1419629_1280.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.item1  { grid-area: header; }
-.item2  { grid-area: sidebar; }
-.item3  { grid-area: main; }
-.item4  { grid-area: presenter; }
-.right  { grid-area: right; }
+header      { grid-area: header; }
+sidebar     { grid-area: sidebar; }
+main        { grid-area: main; }
+right       { grid-area: right; }
 
 .grid-container {
 
     display: grid;
     grid-template-areas: 
-                        ". header header ."
-                        "sidebar main main right"
-                        "sidebar presenter presenter presenter";
-    grid-gap: .5em;
-    background-color: rgb(63, 97, 129)
+                        ". header right"
+                        "sidebar main right"
+                        ". main .";
+    grid-gap: .3em;
 }
 
 .grid-container > div {
+    padding: .1rem;
+    height: 100%;
+
+}
+
+header {
+    width: 80%;
     text-align: center;
-    padding: .3rem;
-    background-color: rgba(122, 191, 255, 0.747)
+    padding: 5vh;
+    font-size: 5vh;
+    margin: 10vh auto auto;
+}
+
+sidebar {
+    background-color: antiquewhite;
+    margin-left: 1em;
+    font-size: 2vh;
+    height: 100%;
+    border: 2px outset rgba(245, 36, 36, 0.555);
+    border-radius: .2em;
 
 }
 
-.item2 {
-    text-align: left;
+sidebar h3{
+    padding: 1rem;
+    opacity: 1;
 }
 
-.item4 {
-    height: 25rem;
+.right {
+    grid-template-areas: right;
 }
 
-#gifPlayer {
-    width: 40vw;
-    height: 30vh;
-    margin: 8vh auto auto;
-    background-color: red;
-    border: 5px solid rgb(121, 0, 0);
+main {
+    background-image: url("../images/redcurtain.png");
+    background-size: cover;
+    height: 70vh;
+    border: 1em ridge rgba(111, 149, 180, 0.432);
+    border-radius: .5em;
+       
 }
+
+.disWord {
+    background-color: rgba(75, 14, 14, 0.733);
+    border: .2em dotted rgb(241, 217, 172);
+    margin: auto auto;
+    text-align: center;
+    padding: 3vw;
+    width: 60%;
+}
+
+#currentword {
+    color: antiquewhite;
+    font-size: 3vw;
+}
+
+.disGif {
+    grid-column: span 2;
+    grid-row: span 2;
+    margin: 5vh auto auto;
+}
+
+img {
+    display: block;
+    margin: auto auto;
+    width: 40em;
+    height: 30em;
+
+}
+

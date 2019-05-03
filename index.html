@@ -5,18 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Word Guess Grid</title>
+    <title>Guess the Instrument</title>
+
+    <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 
 <body>
+
     <div class="grid-container">
 
-        <div class="item1">
-            <h1>Word Guess - The Orchestra</h1>
-        </div>
+        <header class="header">
 
-        <div class="item2">
+            <h1> &#119070; :: Guess the Instrument :: &#119070; </h1>
+
+        </header>
+
+        <sidebar class="sidebar">
+            <div>
+                <button class="right" id="begin">START!</button>
+
+            </div>
             <div>
                 <h3>Remaining Guesses:
                     <span id="guesses-left"></span>
@@ -27,33 +37,33 @@
                     <span id="wintracker"></span>
                 </h3>
             </div>
-
             <div>
                 <h3>Losses:
                     <span id="losstracker"></span>
                 </h3>
             </div>
-
             <div>
                 <h3>Letters Guessed:
                     <span id="letters-guessed"></span>
                 </h3>
             </div>
-        </div>
+        </sidebar>
 
-        <div class="item3">
-            <h3 id="currentword"></h3>
-        </div>
+        <main>
 
-        <div class="right"><button id="begin">START!!</button></div>
+            <div class="disWord" id="currentword"></div>
 
-        <div class="item4">
-            <div id="gifPlayer"><h4>this will be the presentation when guessed</h4></div>
-        </div>
+            <div class="disGif">
+                <img id="gif-player" src="./assets/gifs/tenor.gif" alt="bugs">
+            </div>
+
+        </main>
+
+
     </div>
 
-
     <script src="./assets/javascript/game.js"></script>
+
 </body>
 
 </html>
