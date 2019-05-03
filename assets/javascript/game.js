@@ -102,7 +102,7 @@ function rounds() {
         losses++;
         document.getElementById("losstracker").innerHTML = losses;
         g.src = "./assets/gifs/bb.gif";
-        return;
+        gameStart();
     }
 };
 
